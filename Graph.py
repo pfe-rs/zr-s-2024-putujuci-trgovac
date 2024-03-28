@@ -1,8 +1,4 @@
 import numpy
-from Solver import Solver
-from Graph import Graph
-from User import User
-
 class Graph:
     def __init__(self, n):
         self.nodes = n
@@ -25,7 +21,3 @@ class Graph:
         return self.nodes + 1
     def getEdges(self):
         return self.edges
-
-client = User()
-client.input_graph()
-client.start_simulation()
