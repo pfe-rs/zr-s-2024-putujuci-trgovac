@@ -1,10 +1,12 @@
 from  Solver import Solver
 from User import User
 from Graph import Graph
-
+#import solver 
+#solver.path.insert(C:\Users\lena\OneDrive\Desktop\Putujuci trgovac\Solver)
 import pytest
 import random
 import numpy
+import mpmath as math
 
 #@pytest.fixture
 def test_add():
@@ -22,5 +24,6 @@ def test_add():
                 edges[i][j] = random.randint(10, 100)
                 edges[j][i] = edges[i][j]
     print(edges)
-    #assert Solver.brute_force(edges, n + 1) == (list(range(1, n + 1)), n)
+    assert Solver.brute_force(edges, n + 1) == (list(range(1, n + 1)), n)
     assert Solver.nearestNeighbor(graph) == (list(range(1, n + 1 )), n)
+    assert Solver.simulated_annealing(edges, n + 1) == (list(range(1, n + 1)), n)
