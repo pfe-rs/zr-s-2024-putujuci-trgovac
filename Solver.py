@@ -29,17 +29,12 @@ class Solver:
     def nearestNeighbor(graph:Graph):
         visited=[1]
         price=0
-        #possible_edges=graph.edges[0]
         possible_edges=np.array(graph.edges[1])
-        #possible_edges=np.arange(0)
-        #possible_edges=np.append(graph.edges[1],possible_edges)
         next=1
         while (len(visited)!= graph.nodes):
             print(possible_edges)
             possible_edges[0]=999
             possible_edges[next]=999
-            #print(visited)
-            #next = possible_edges.index(min(possible_edges))
             potential_next=np.argmin(possible_edges)
             if(potential_next in visited):
                  possible_edges[potential_next]=999
@@ -47,12 +42,9 @@ class Solver:
             else:
                 next=potential_next
                 price=price+min(possible_edges)
-                #possible_edges=graph.edges[next]
                 print("final"+str(next))
                 possible_edges=np.array(graph.edges[next])
-                    #np.put(possible_edges,graph.edges[next-1])
                 visited.append(next)
-        #visited.append(1)
         price+=graph.edges[next][1]
         print("Put " + str(visited) + " je posecen sa cenom " + str(price))
         return(visited,price)
