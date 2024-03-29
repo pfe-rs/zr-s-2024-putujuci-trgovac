@@ -7,15 +7,15 @@ class Graph:
     def add_nodes_and_edge(self, u, v, w):
         try:
             if w <= 0:
-                print('Edge weight error.')
+                print('Greska tezine veze.')
                 return
             self.edges[u][v] = w
             self.edges[v][u] = w
         except TypeError:
-            print('Incorrect weight type.')
+            print('Pogresan tip tezine veze.')
 
     def print_graph(self):
-        print('GRAPH:')
+        print('GRAF:')
         print(self.edges)
     def getNumberOfNodes(self):
         return self.nodes + 1

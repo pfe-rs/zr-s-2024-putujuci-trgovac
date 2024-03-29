@@ -50,9 +50,10 @@ class Solver:
         picked = []
         for i in range(len(perm)):
             for j in range(i):
-                graph.append((j + 1, i + 1))
+                graph.append((perm[j], perm[i]))
         for i in range(len(perm)):
-            picked.append((min(perm[i], perm[i - 1]), max(perm[i], perm[i - 1])))
+            if (perm[i], perm[i - 1]) in graph: picked.append((perm[i], perm[i - 1]))
+            else: picked.append((perm[i - 1], perm[i]))
         G = nx.Graph()
         G.add_edges_from(graph)
         colors = {}
@@ -80,13 +81,13 @@ class Solver:
             if  perm[0] != 1:
                 break
         return (bestperm, sol)
-    def simulated_annealing(edges, n):
+    def simulated_annealing(edges, perm):
         temperature = 500
-        perm = list(range(1, n))
+        n = len(perm) + 1
         modded_perm = perm[:]
         sol = Solver.get_permutation_score(edges, perm)
         bestperm = perm
-        iterations = 1000000 / n
+        iterations = 100000
         while iterations > 0:
             modded_perm = randomize_permutation(perm)
             perm_score = Solver.get_permutation_score(edges, perm)
