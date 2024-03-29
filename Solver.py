@@ -3,7 +3,6 @@ from Graph import Graph
 
 #from Shapes import Circle
 #from Shapes import Line
-import math
 #from User import User
 class Solver:
     def __init__(self,type):
