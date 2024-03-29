@@ -4,22 +4,7 @@ import mpmath as math
 import random
 import networkx as nx
 import matplotlib.pyplot as plt
-class Solver:
-    def brute_force(edges, n):
-        perm = list(range(1, n))
-        sol = 1e18
-        bestperm = []
-        while True:
-            current = 0
-            for i in range(n - 1):
-                current += edges[perm[i]][perm[i - 1]]
-            if current < sol:
-                sol = current
-                bestperm = perm[:]
-            next_permutation(perm)
-            if  perm[0] != 1:
-                break
-        return (bestperm, sol)
+
     
 
 
