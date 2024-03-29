@@ -32,7 +32,6 @@ class Solver:
         possible_edges=np.array(graph.edges[1])
         next=1
         while (len(visited)!= graph.nodes):
-            print(possible_edges)
             possible_edges[0]=999
             possible_edges[next]=999
             potential_next=np.argmin(possible_edges)
@@ -42,7 +41,6 @@ class Solver:
             else:
                 next=potential_next
                 price=price+min(possible_edges)
-                print("final"+str(next))
                 possible_edges=np.array(graph.edges[next])
                 visited.append(next)
         price+=graph.edges[next][1]
