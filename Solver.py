@@ -7,7 +7,7 @@ import math
 #from User import User
 class Solver:
     def __init__(self,type):
-        self.type=type
+        pass
 
         
     def brute_force(edges, n):
