@@ -2,7 +2,7 @@ import numpy
 class Graph:
     def __init__(self, n):
         self.nodes = n
-        self.edges = numpy.zeros((n + 5, n + 5))
+        self.edges = numpy.zeros((n + 1, n + 1))
 
     def add_nodes_and_edge(self, u, v, w):
         try:

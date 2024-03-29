@@ -5,6 +5,6 @@ from User import User
 
 
 
-client = User()
-client.input_graph()
-client.start_simulation()
+user = User()
+graph=user.input_graph()
+user.start_simulation(graph)
