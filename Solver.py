@@ -1,6 +1,6 @@
 import numpy as np
 from Graph import Graph
-import pygame
+
 #from Shapes import Circle
 #from Shapes import Line
 import math
