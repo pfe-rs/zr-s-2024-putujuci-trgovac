@@ -1,5 +1,5 @@
 import numpy
-import math
+import mpmath as math
 import networkx as nx
 import matplotlib.pyplot as plt
 import random
@@ -100,4 +100,4 @@ class Solver:
                     perm = modded_perm[:]
             temperature *= 0.99
             iterations -= 1
-        return bestperm, sol
+        return bestperm, int(sol)

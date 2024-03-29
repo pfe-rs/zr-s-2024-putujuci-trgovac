@@ -8,6 +8,5 @@ class User:
         for i in range(m):
             u, v, w = map(int, input().split())
             self.graph.add_nodes_and_edge(u, v, w)
-        self.graph.print_graph()
     def start_simulation(self):
         print(Solver.brute_force(self.graph.getEdges(), self.graph.getNumberOfNodes()))
