@@ -68,8 +68,8 @@ class Solver:
         for i in range(len(perm)):
             ret += edges[perm[i]][perm[i - 1]]
         return ret
-    def brute_force(edges, n):
-        perm = list(range(1, n))
+    def brute_force(edges, perm):
+        n = len(perm) + 1
         sol = 1e18
         bestperm = []
         while True:
@@ -122,5 +122,4 @@ class Solver:
                 possible_edges=np.array(graph.edges[next])
                 visited.append(next)
         price+=graph.edges[next][1]
-        print("Put " + str(visited) + " je posecen sa cenom " + str(price))
         return(visited,price)
