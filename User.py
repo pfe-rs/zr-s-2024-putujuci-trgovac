@@ -40,16 +40,18 @@ class User:
                 for i in range(n):
                     x = int(input())
                     perm.append(x)
-                testcases.append((self.graph.getEdges(), perm))
+                print("Unesi zeljeno vreme:")
+                time = int(input())
+                testcases.append((self.graph.getEdges(), perm, time))
         except TypeError:
             print("Nesto u vezi unosa je pogresno odradjeno")
         try:
             pool = multiprocessing.Pool(processes = tests)
-            results = pool.starmap(Solver.brute_force, testcases)
+            results = pool.starmap(Solver.findRange, testcases)
             pool.close()
             pool.join()
             for result in results:
                 print(result)
-                Solver.draw(result[0])
+                Solver.draw(result[1])
         except TypeError:
             print("Nesto u vezi unosa je pogresno odradjeno")

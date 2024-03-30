@@ -63,6 +63,23 @@ class Solver:
         nx.draw(G, with_labels = True, node_color = 'skyblue', edge_color = [colors[edge] for edge in G.edges()], node_size = 800, font_size = 12)
         plt.gcf().canvas.manager.set_window_title('TSP:')
         plt.show()
+    def findRange(edges, perm, time):
+        unordered = Solver.price_roads_brute_force(edges, perm)
+        ordered = sorted(unordered, key = lambda x : x[0])
+        ret = 0
+        L = 0
+        R = len(unordered) - 1
+        while L <= R:
+            S = (L + R) // 2
+            if ordered[S][0] < time:
+                L = S + 1
+            else:
+                ret = S
+                R = S - 1
+        if abs(time - ordered[ret - 1][0]) < abs(time - ordered[ret][0]):
+            return ordered[ret - 1]
+        else:
+            return ordered[ret]
     def get_permutation_score(edges, perm):
         ret = 0
         for i in range(len(perm)):
@@ -81,6 +98,14 @@ class Solver:
             if  perm[0] != 1:
                 break
         return (bestperm, sol)
+    def price_roads_brute_force(edges, perm):
+        unordered = []
+        while True:
+            unordered.append((Solver.get_permutation_score(edges, perm), perm[:]))
+            next_permutation(perm)
+            if  perm[0] != 1:
+                break
+        return unordered
     def simulated_annealing(edges, perm):
         temperature = 500
         n = len(perm) + 1
