@@ -12,6 +12,8 @@ if __name__ == "__main__":
     #print(road)
     #minGraph= graph.minimizeGraph(road)
     k=int(input("Unesi broj podruti: "))
+    print("unesi zeljeno vreme")
+    
 
     tests = []
     type=[]

@@ -78,9 +78,7 @@ class Solver:
                 sol = current
                 bestperm = perm[:]
             next_permutation(perm)
-            current = current + sol# i ovo mora gore nemam mis lol
-            if  perm[0] != 1:#ovo mora da se prebaci gore
-                break
+            
         return (bestperm, sol)
     def simulated_annealing(edges, n):
         temperature = 500
