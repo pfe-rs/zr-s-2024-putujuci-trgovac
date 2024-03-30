@@ -4,7 +4,7 @@ import mpmath as math
 import random
 import networkx as nx
 import matplotlib.pyplot as plt
-
+from multiprocessing import Pool, cpu_count
     
 
 
@@ -68,6 +68,7 @@ class Solver:
             ret += edges[perm[i]][perm[i - 1]]
         return ret
     def brute_force(edges, n):
+        optional_price=0
         perm = list(range(1, n))
         sol = 1e18
         bestperm = []
@@ -77,7 +78,8 @@ class Solver:
                 sol = current
                 bestperm = perm[:]
             next_permutation(perm)
-            if  perm[0] != 1:
+            current = current + sol# i ovo mora gore nemam mis lol
+            if  perm[0] != 1:#ovo mora da se prebaci gore
                 break
         return (bestperm, sol)
     def simulated_annealing(edges, n):
@@ -104,11 +106,20 @@ class Solver:
             iterations -= 1
         return bestperm, int(sol)
     def nearestNeighbor(graph:Graph):
+        k=0
+        if math.inf in graph.edges:
+            for i in range(len(graph.edges[0])):
+                deleted=0
+                for j in range(len(graph.edges[0])):
+                    if graph.edges[i][j]==math.inf or graph.edges[i][j]==0:
+                        deleted=deleted+1
+                if(deleted==len(graph.edges[0])):
+                    k=k+1
         visited=[1]
         price=0
         possible_edges=np.array(graph.edges[1])
         next=1
-        while (len(visited)!= graph.nodes):
+        while (len(visited)+k!= graph.nodes):
             possible_edges[0]=999
             possible_edges[next]=999
             potential_next=np.argmin(possible_edges)
